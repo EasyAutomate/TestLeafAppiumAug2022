@@ -25,7 +25,6 @@ public class FirstCodeInAndroid {
 				.sendKeys("Leaf@123");
 		driver.findElement(AppiumBy.xpath("//android.widget.Button")).click();
 		driver.quit();
-		
 
 	}
 }
