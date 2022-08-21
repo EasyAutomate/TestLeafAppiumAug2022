@@ -14,7 +14,7 @@ public class FirstCodeInAndroid {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setCapability("platformName", "Android");
 		dc.setCapability("deviceName", "dgdfgdfg");
-		dc.setCapability("app", System.getProperty("user.dir")+"\\apks\\leaforg.apk");
+		dc.setCapability("app", System.getProperty("user.dir") + "\\apks\\leaforg.apk");
 		RemoteWebDriver driver = new RemoteWebDriver(new URL("http://0.0.0.0:4723/wd/hub"), dc);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.findElement(AppiumBy.xpath(
