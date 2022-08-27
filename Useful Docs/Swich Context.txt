@@ -1,0 +1,18 @@
+Session Created as a Native App
+1. VDM (Vendor Specific Mechanism) will be in primarily interacting to device
+2. I can identify the context available in screen
+3. I can switch to any context
+4. I can launch any installed app as a NATIVE only
+5. If that app has a WebView context, then I should explicitly navigate to it (Switch to respecteve context)
+6. If I switch to correct WebView, ChromeDriver would be interacting with device.
+7. It can identify the respective page source and interact with it.
+8. If I want to switch back to Native app, I can switch the context
+
+
+Session Created as a Mobile Web
+//Note: Chrome browser cannot be stopped unless session is killed
+1. ChromeDriver will be in primarily interacting to device
+//Below points are applicable only in recent versions i.e Appiem Server > 1.21 and java client >= 8.X
+2. I can launch any installed app as a NATIVE only but focus would be still available in the previous webview/screen
+3. If I need to interact with the app launched, then I should explicitly navigate to Native Context
+4. Challenge : If the app is a Hybrid app, I will not have provision/permission to switch to Webview context inside the Hybrid app
