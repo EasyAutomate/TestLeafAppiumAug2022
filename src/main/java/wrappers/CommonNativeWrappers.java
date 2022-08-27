@@ -196,10 +196,9 @@ public class CommonNativeWrappers {
 				return driver.findElement(AppiumBy.xpath(locValue));
 			case "accessibilityId":
 				return driver.findElement(AppiumBy.accessibilityId(locValue));
-
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		return null;
 	}

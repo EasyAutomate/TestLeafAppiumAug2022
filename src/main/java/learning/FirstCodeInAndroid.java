@@ -12,8 +12,10 @@ import io.appium.java_client.AppiumBy;
 public class FirstCodeInAndroid {
 	public static void main(String[] args) throws MalformedURLException {
 		DesiredCapabilities dc = new DesiredCapabilities();
+		// TO run on Android emulator
+		//dc.setCapability("avd", "Pixel_4_API_30");
 		dc.setCapability("platformName", "Android");
-		dc.setCapability("deviceName", "dgdfgdfg");
+		dc.setCapability("deviceName", "Lokesh emulator");
 		dc.setCapability("app", System.getProperty("user.dir") + "\\apks\\leaforg.apk");
 		RemoteWebDriver driver = new RemoteWebDriver(new URL("http://0.0.0.0:4723/wd/hub"), dc);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
