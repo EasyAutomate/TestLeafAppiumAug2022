@@ -1,0 +1,336 @@
+Manual Testing
+Suite
+	Scenarios
+		Test cases
+			Steps
+
+TestNG
+Suite
+	Test
+		Class
+			Method
+
+Cucumber
+Project
+	Feature
+		Scenario
+			Step Definition
+
+Cucumber
+1. Accept the change
+2. There should be no unknown w.r.t Story/Feature
+3. Create any project
+4. Write Feature (TC)
+5. Write Step Definitions (Write a method for each step)
+6. Write automation code for each step
+
+
+
+Maven project
+Cucumber
+src/main/java
+stepDef
+	StepDefinition.java 
+AD d ;
+	@When("Application is launched")
+	public void aa() {
+	Dc ....
+	d = new AD();
+	}
+src/main/resources
+src/test/java
+runner
+	TestRunner.java
+	@CucumberOptions(......)
+	public class runner{
+	}
+src/test/resources
+features
+	Login.feature
+		Feature: Login funtionality
+		
+		Scenario: Login Positive flow
+		Given --> Pre-condition
+		When --> Step to be performed
+		Then --> Expected result
+		And --> To support other actions
+		But --> Expected result for negative cases
+		* --> Wildcard/Any
+
+		Given Application is launched
+		When I login with valid credentials 
+		Then Home Page is displayed
+		
+
+Page Object Model
+
+Rules of POM
+1. Categorize the class created / to be created in separate package
+2. Create a reuseable method class / Wrapper
+3. Each and every page should be a separate class
+4. Every page should extend the wrapper class
+5. Each and every action should be a seperate method
+6. Ensure action is performed as expected
+6. Every method should return to the page it would land post completion 
+7. Verify the page it has landed
+
+
+Hybrid Framework
+src/main/java
+wrappers
+	CommonWrappers.java
+		all methods will be available
+		all methods should have a return type
+pages
+	LoginPage.java extends CommonWrappers
+
+		public LoginPage() {
+			PageFactory.initElements(new AppiumFieldDecorator(driver),this);
+			if(!verifyEleIsDisplayed(WebElement)){
+			throw new RunTimeException("Login Page is not displayed");
+		}
+
+		@AndroidFindBy(...)
+		@iOSXCUITFindby(...)
+		@FindBy(...)
+		private WebElement userName;
+		
+		public LoginPage enterUN(String data) {
+		if(enterData(webElement,data)) {
+			logReport("PASS", "Username "+data+" entered sucessfully");	
+		} else {
+			logReport("FAIL", "Username "+data+" is not entered");
+		}
+		return this;
+		}
+		public LoginPage enterPwd() {
+		if(enterData(webElement,data)) {
+			logReport("PASS", "Password "+data+" entered sucessfully");	
+		} else {
+			logReport("FAIL", "Password "+data+" is not entered");
+		}
+		return this;
+		}
+		public LoginPage clickLoginBtnForFailure() {
+		click(webElement);
+		return this;
+		}
+		public HomePage clickLoginBtnForSuccess() {
+		click(webElement);
+		return new HomePage();
+		}
+		
+	HomePage.java extends CommonWrappers
+	....
+facade
+	LoginPageFacade
+		LoginPage lp = new LoginPage();
+		@When("I login with valid credentials")
+		public void aa() {
+		lp.enterUn(...);
+		lp.enterPwd(...);
+		lp.clickLogin();
+		}
+src/main/resources
+src/test/java
+runner
+	TestRunner.java
+	@CucumberOptions(......)
+	public class runner{
+	}
+src/test/resources
+features
+	Login.feature
+		Feature: Login funtionality
+		
+		Scenario: Login Positive flow
+		Given --> Pre-condition
+		When --> Step to be performed
+		Then --> Expected result
+		And --> To support other actions
+		But --> Expected result for negative cases
+		* --> Wildcard/Any
+
+		Given Application is launched
+		When I login with valid credentials 
+		Then Home Page is displayed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Page Object Model
+
+Rules of POM
+1. Categorize the class created / to be created in separate package
+2. Create a reuseable method class / Wrapper
+3. Each and every page should be a separate class
+4. Every page should extend the wrapper class
+5. Each and every action should be a seperate method
+6. Ensure action is performed as expected
+6. Every method should return to the page it would land post completion 
+7. Verify the page it has landed
+
+Maven project
+
+POM
+
+src/main/java
+wrappers
+	CommonWrappers.java
+		all methods will be available
+		all methods should have a return type
+pages
+	LoginPage.java extends CommonWrappers
+
+		public LoginPage() {
+			if(!verifyEleIsDisplayed(WebElement)){
+			throw new RunTimeException("Login Page is not displayed");
+		}
+
+		public LoginPage enterUN() {
+		if(enterData(webElement,data)) {
+			syso("Username "+data+" entered sucessfully");	
+		} else {
+			syse("Username "+data+" is not entered");
+		}
+		return this;
+		}
+		public LoginPage enterPwd() {
+		if(enterData(webElement,data)) {
+			syso("Password "+data+" entered sucessfully");	
+		} else {
+			syse("Password "+data+" is not entered");
+		}
+		return this;
+		}
+	HomePage.java extends CommonWrappers
+	....
+src/main/resources
+src/test/java
+testcases
+	TC001.java extends CommonWrappers
+		public static void main(String[] args) {
+		launchApp();
+		new LoginPage().enterUN().enterPwd()...............
+		}
+
+src/test/resources
+
+
+Hybrid Framework
+src/main/java
+utilities
+	Reporter.java
+	ReadExcelData.java
+wrappers
+	CommonWrappers.java extends Reporter
+		all methods will be available
+		all methods should have a return type
+	ProjectSpecificWrappers extends CommonWrappers
+		@BeforeMethod
+		public void bm() {
+		launchApp();
+		}
+pages
+	LoginPage.java extends CommonWrappers
+
+		public LoginPage() {
+			PageFactory.initElements(new AppiumFieldDecorator(driver),this);
+			if(!verifyEleIsDisplayed(WebElement)){
+			throw new RunTimeException("Login Page is not displayed");
+		}
+
+		@AndroidFindBy(...)
+		@iOSXCUITFindby(...)
+		@FindBy(...)
+		private WebElement userName;
+
+		public LoginPage enterUN(String data) {
+		if(enterData(webElement,data)) {
+			logReport("PASS", "Username "+data+" entered sucessfully");	
+		} else {
+			logReport("FAIL", "Username "+data+" is not entered");
+		}
+		return this;
+		}
+		public LoginPage enterPwd() {
+		if(enterData(webElement,data)) {
+			logReport("PASS", "Password "+data+" entered sucessfully");	
+		} else {
+			logReport("FAIL", "Password "+data+" is not entered");
+		}
+		return this;
+		}
+		public LoginPage clickLoginBtnForFailure() {
+		click(webElement);
+		return this;
+		}
+		public HomePage clickLoginBtnForSuccess() {
+		click(webElement);
+		return new HomePage();
+		}
+		
+	HomePage.java extends CommonWrappers
+	....
+src/main/resources
+src/test/java
+testcases
+	TC001.java extends ProjectSpecificWrappers
+	{
+		@Test
+		public void runTC() {
+		new LoginPage().enterUN().enterPwd()...............
+	}
+
+src/test/resources
+
+
+TestNG
+
+	@BeforeSuite
+		@BeforeTest
+			@BeforeClass
+				@BeforeMethod
+					@Test
+				@AfterMethod
+			@AfterClass
+		@AfterTest
+	@AfterSuite		
+
+XML
+
+<suite
+	<test
+		<classes>
+			<class
+		</classes?
+	</test>
+</suite>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
