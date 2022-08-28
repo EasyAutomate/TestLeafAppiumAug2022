@@ -1,0 +1,19 @@
+Android Installation
+1.	JDK 1.8
+2.	Android SDK Cmd line tools  Android Studio
+3.	Appium latest
+4.	Appium inspector latest
+5.	Any IDE
+6.	Set Env variable for JAVA_HOME and ANDROID_HOME
+
+iOS
+1.	Install the latest version of MAC OS
+2.	Install the latest version of Xcode
+3.	Install Xcode cmd line tools
+4.	JDK 1.8
+5.	Android SDK Cmd line tools  Android Studio
+6.	Appium latest
+7.	Appium inspector latest
+8.	Any IDE
+9.	Set Env variable for JAVA_HOME and ANDROID_HOME
+10.	3rd party library
