@@ -1,0 +1,17 @@
+Appium
+
+Mandatory caps if APP/IPA file is available
+
+platformName --> iOS
+deviceName --> Exact match (iOS Simulator) / Any (Real device)
+app --> Absolute Path of my ipa/app file in my local machine
+automationName --> XCUITest
+platformVersion --> iOS Device Version (Mandatory for Simulator alone)
+
+
+Mandatory caps if APP/IPA file is not available
+
+platformName --> Android
+deviceName --> Any (Android)
+automationName --> XCUITest
+bundleId --> the app bundle name provided by the developer eg. com.example.apple-samplecode.UICatalog
