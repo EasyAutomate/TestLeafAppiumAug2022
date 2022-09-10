@@ -1,20 +1,27 @@
-1. Appium can automate only visible portion of screen
-2. In most of the cases (Native app) we would be using XPATH as the locator since most of the app would be built earlier before we start the automation. So we need be careful in writing the XPATH. Note: Never use the index option as it changes based on the screen size. Try to use other option to write your XPATH eg. with text, preceding, following etc.
-3. If you search an element in Appium Inspector and click, it might not hightlight in image (Known bug from 1.21.0. Use 1.20.X to overcome this issue)
-4. To inspect or use Appium inspector for hybrid apps, click the web icon on top, choose the dropdown option for Webview and then start inspecting it. I recommend to use Chrome Inspector (chrome://inspect) rather using Appium inspector for Hybrid App (WebView) and Mobile web
-5. Appium inspector cannot identify the overlapping elements. We need to manually identify the element in source code and identify the locators.
-6. To locate Id and Name locators in Hybrid App (WebView) and Mobile web is not working in Appium. NoSuchElementException would be thrown. Known issue for more than a year. We need to convert Id and Name as Xpath and to inspect the element.
-7. If the screenshot is disabled in App, Appium will not be able to identify the locators. We need to ask Dev team to provide a build to identify the locators.
-8. If app is obfuscated then we might have challenges in identifying the locators. We might need to use XPATH for all the places eventhought id/name is provided by the dev team
-9. In case if we have added only "app" as part of desired caps, while trying to launch the app we may end up with error stating "Not a launchable activity"/"app permission denied". In that case add appPackage and appActivty along with the existing desired capabilities.
-10. During swipe, check if the starting co-ordinates are not overlapping with any other element
-11. In case, if swipe is not working try to print the co-ordinates, validate the same in Appium inspector
-12. If you work for a long time in web view and then switch to Native, there are chances of socket hangup. To overcome add newCommandTimeout with a greater time duration
-13. autoGrantPermissions capability will click all elements with id as button1
-14. In iOS, we need to manually identify the keyboard and then click on the keys
-15. For  numeric keyboard, hidekeyboard() wont work. Identify the element and the click on it
-16. In webViews, Keyboard has to be switched to Native then perform the action and then switch back to WebView 
+1. Appium can automate only visible portion of screen [Solution: First Swipe till element is visible, then try to interact with the element]
+2. In most of the cases (Native app) we would be using XPATH as the locator since most of the app would be built earlier before we start the automation.
+[Solution : So we need be careful in writing the XPATH. Note: Never use the index option as it changes based on the screen size. Try to use other option to write your XPATH eg. with text, preceding, following etc.]
+3. If you search an element in Appium Inspector and click, it might not hightlight in image (Known bug from Appium Server v1.21.0.) [Solution: Use the latest version of Appium inspector]
+4. To inspect or use Appium inspector for hybrid apps, click the web icon on top, choose the dropdown option for Webview and then start inspecting it.
+[Solution: I recommend to use Chrome Inspector (chrome://inspect) (or) Safari Inspector rather using Appium inspector for Hybrid App (WebView) and Mobile web. Reason: Appium Inspect caanot highlight the elements in the bottom of the page]
+5. Appium inspector cannot identify the overlapping elements. [Solution: We need to manually identify the element in source code and identify the locators.]
+6. To locate Id and Name locators in Hybrid App (WebView) and Mobile web is not working in Appium.
+[Solution: NoSuchElementException would be thrown. Known issue for more than a year. We need to convert Id and Name as Xpath and to inspect the element.] (Fixed in the latest version of Appium Server 1.22.X and Java client 8.X and above)
+7. If the screenshot is disabled in App, Appium will not be able to identify the locators.
+[Solution: 1. We need to ask Dev team to provide a debug build with screenshot disabled feature remove to identify the locators. 2. Use driver.getPageSource(), find the element from the source code and interact with it. Note:Option 2 might take more time ]
+8. If app is obfuscated then we might have challenges in identifying the locators. [Solution: We might need to use XPATH for all the places even-though id/name is provided by the dev team]
+9. In case if we have added only "app" as part of desired caps, while trying to launch the app we may end up with error stating "Not a launchable activity"/"app permission denied".
+[Solution: In that case add appPackage and appActivty along with the existing desired capabilities which has the permission. Get appPackage & appActivty via dumpsys cmd (or) using ApplicationInfo.apk app (or) using package manifest dump cmd ]
+10. During swipe, check if the starting co-ordinates are not overlapping with any other element. There are chances of swipe failure (or) click on different element
+[Solution: Identify the right co-ordinates and perform swipe]
+11. Swipe is not working in few places [ Solution: 1. Try to print the co-ordinates, validate the same in Appium inspector. 2. Check if the co-ordinates start in right position of a scrollable element]
+12. If you work for a long time in web view and then switch to Native, there are chances of socket hangup. [Solution: To overcome add newCommandTimeout with a greater time duration]
+13. autoGrantPermissions capability will click all elements with id as button1 [Solution: If the developer has user a default native pop-up, then this capability should be removed and the button should be clicked wherever needed]
+14. While working with web views in iOS keyboard is not intractable [Solution: In iOS, we need to switch to Nativew, identify the element on the keyboard and then click on the element and then switch back to webview]
+15. For numeric keyboard, hidekeyboard() wont work. [Solution: 1. Identify the element which can hide the keyboard and the click on it 2.Click on any co-ordinate outside the keyboard layout]
+16. In iOS webViews, Keyboard has to be switched to Native then perform the action and then switch back to WebView
 17. Toast/Capacha cannot be automated
 18. driver.executeScript will work only if relaxed security flag is enabled
 19. In iOS, web view id is dynamic. So it is difficult to use exact web view in driver.context()
-20. Check if any other web view/browser is opened if we automate hybrid/web app. So kill all the other running apps before the test starts.
+20. Check if any other web view/browser is opened if we automate hybrid/web app. [Solution: So kill all the other running apps before the test starts.]
+21. In picker view, based on the offset value the next value might be changing [Solution: Based on the device screen size, the offset value in wrapper should be updated]

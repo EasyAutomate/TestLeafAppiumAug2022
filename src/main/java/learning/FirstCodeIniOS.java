@@ -11,12 +11,12 @@ import java.time.Duration;
 public class FirstCodeIniOS {
 	public static void main(String[] args) throws MalformedURLException {
 		DesiredCapabilities dc = new DesiredCapabilities();
-		// TO run on Android emulator
-		//dc.setCapability("avd", "Pixel_4_API_30");
 		dc.setCapability("platformName", "iOS");
 		dc.setCapability("deviceName", "iPhone 13 Pro Max");
-		dc.setCapability("app", System.getProperty("user.dir") + "/apks/UICatalog.zip");
+		//dc.setCapability("app", System.getProperty("user.dir") + "/apks/UICatalog.zip");
 		dc.setCapability("automationName", "XCUITest");
+		dc.setCapability("bundleId","com.example.apple-samplecode.UICatalog");
+		//dc.setCapability("udid","<udid>");
 		RemoteWebDriver driver = new RemoteWebDriver(new URL("http://0.0.0.0:4723/wd/hub"), dc);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.findElement(AppiumBy.accessibilityId("Action Sheets")).click();

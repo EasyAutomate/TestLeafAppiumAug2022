@@ -575,8 +575,10 @@ public class CommonNativeWrappers {
 	public boolean enterValue(WebElement ele, String data) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(ele));
+		ele.click();
 		ele.clear();
 		ele.sendKeys(data);
+		if(driver.getCapabilities().getPlatformName().equals("Android"))
 		hideKeyboard();
 		return true;
 	}

@@ -1,0 +1,8 @@
+Android
+1. Print context will print background webviews
+Challenge: Since the chromedriver can find all the webviews running in device. Solution: Find the exact name if the WebView context and switch to it
+
+iOS
+1. Print context will print the webview in current application only
+Challenge: Sometimes the webviews will not be listed. Solution: Add sleep / wait for some time. (This challenge was not available in previous version of Appium i.e. < 1.21)
+Challenge: WebView context is a dynamic one. Solution: Switch to a context which has a partial value of WEBVIEW
